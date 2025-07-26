@@ -78,12 +78,7 @@ class MainActivity : AppCompatActivity() {
                     MusicMetadataReader.extractMetadata(file)
                 }
 
-                // Aqui você pode salvar a lista em algum lugar:
-                // Exemplo: um banco de dados, Room, ou SharedPreferences
-                // Para simplificar, vamos só logar a quantidade
                 println("Encontradas ${musicTracks.size} músicas.")
-
-                // Se quiser, pode enviar um Broadcast, LiveData, ou usar outro método para avisar a UI.
 
                 return Result.success()
             } catch (e: Exception) {
