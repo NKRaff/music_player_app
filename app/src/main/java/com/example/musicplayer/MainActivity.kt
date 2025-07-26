@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                     MusicMetadataReader.extractMetadata(file)
                 }
 
-                println("Encontradas ${musicTracks.size} músicas.")
+                Log.d("workerManager","atualizacao 1 minuto. Encontradas ${musicTracks.size} músicas.")
 
                 return Result.success()
             } catch (e: Exception) {
