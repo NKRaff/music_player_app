@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.musicplayer.adapters.MusicCustomAdapter
 import com.example.musicplayer.data.MusicMetadataReader
 import com.example.musicplayer.data.MusicRepository
 import com.example.musicplayer.databinding.ActivityMainBinding
@@ -30,12 +32,17 @@ class MainActivity : AppCompatActivity() {
             try {
                 MusicMetadataReader.extractMetadata(it)
             } catch (e: Exception) {
+                Log.e("MusicMetadataError", "Erro inesperado ao ler metadados do arquivo ${it.path}: ${e.message}", e)
                 null
             }
         }
 
         Log.d("MusicTracks", "Encontradas ${musicTracks.size} músicas")
-        binding.textView.text = "Encontradas ${musicTracks.size} música"
+
+        val recyclerView = binding.musicsRecyclerView
+        val musicAdapter = MusicCustomAdapter(musicTracks)
+        recyclerView.adapter = musicAdapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     private fun checkPermissions() {
